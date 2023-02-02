@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, Pressable } from "react-native";
 import React from "react";
-import { IPlace } from "../../types/place";
+import { IPlace } from "types/place";
 
 interface PlaceItem {
   place: IPlace;

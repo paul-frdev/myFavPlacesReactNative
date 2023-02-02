@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
-import { Colors } from "../../constants/colors";
+import { Colors } from "constants/colors";
 // import ImagePicker from "./ImagePicker";
 // import LocationPicker from "./LocationPicker";
 

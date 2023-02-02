@@ -1,8 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { IPlace } from "../../types/place";
+import { IPlace } from "types/place";
 import PlaceItem from "./PlaceItem";
-import { Colors } from "../../constants/colors";
+import { Colors } from "constants/colors";
 
 interface PlacesListProps {
   places?: IPlace[];

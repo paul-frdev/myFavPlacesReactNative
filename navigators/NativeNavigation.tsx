@@ -1,14 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  RootStackParamList,
-  RootStackParamListRoute,
-} from "../types/navigation";
-import { Colors } from "../constants/colors";
+import { RootStackParamList, RootStackParamListRoute } from "types/navigation";
 
-import AddPlace from "../screens/AddPlace";
-import AllPlaces from "../screens/AllPlaces";
-import IconButton from "../components/UI/IconButton";
+import React from "react";
+import IconButton from "components/UI/IconButton";
+import { Colors } from "constants/colors";
+import AllPlaces from "screens/AllPlaces";
+import AddPlace from "screens/AddPlace";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
