@@ -14,7 +14,10 @@ import { RootStackParams, RouteProps } from "types/navigation";
 import OutlinedButton from "components/UI/OutlinedButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-const LocationPicker = () => {
+interface LocationPickerProps {
+  onPickLocation: (data: object) => void;
+}
+const LocationPicker = ({ onPickLocation }: LocationPickerProps) => {
   const [pickedLocation, setPickedLocation] = useState<any>();
 
   const { navigate } =
@@ -37,6 +40,10 @@ const LocationPicker = () => {
       setPickedLocation(mapPickedLocation);
     }
   }, [mapPickedLocation]);
+
+  useEffect(() => {
+    onPickLocation(pickedLocation);
+  }, [onPickLocation, pickedLocation]);
 
   const verifyPermissions = async () => {
     if (

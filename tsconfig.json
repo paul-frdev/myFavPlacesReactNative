@@ -14,7 +14,7 @@
       "models/*": ["./models/*"],
       "constants/*": ["./constants/*"],
       "assets/*": ["./assets/*"],
-      "utils/*": ["./utils/*"],
+      "utils/*": ["./utils/*"]
     }
   }
 }
