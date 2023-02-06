@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootStackParamList, RootStackParamListRoute } from "types/navigation";
+import { RootStackParamListRoute, RootStackParams } from "types/navigation";
 import { Colors } from "constants/colors";
 
 import IconButton from "components/UI/IconButton";
@@ -9,7 +9,7 @@ import AllPlaces from "screens/AllPlaces";
 import AddPlace from "screens/AddPlace";
 import Map from "screens/Map";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParams>();
 
 export const NativeNavigation = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { StyleSheet, View, Alert, Image, Text } from "react-native";
 import { Colors } from "constants/colors";
 import {
@@ -8,20 +8,36 @@ import {
 } from "expo-location";
 import { getMapPreview } from "utils/location";
 
-import { useNavigation } from "@react-navigation/native";
-import {
-  MapStackParamListRoute,
-  RootStackParamListRoute,
-} from "types/navigation";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { RootStackParams, RouteProps } from "types/navigation";
 
 import OutlinedButton from "components/UI/OutlinedButton";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const LocationPicker = () => {
   const [pickedLocation, setPickedLocation] = useState<any>();
 
-  const { navigation } = useNavigation<RootStackParamListRoute>();
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<RootStackParams>>();
+  const route = useRoute<RouteProps>();
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  const mapPickedLocation = useMemo(() => {
+    return (
+      route.params && {
+        lat: route.params.pickedLat,
+        lng: route.params.pickedLng,
+      }
+    );
+  }, [route.params]);
+
+  useEffect(() => {
+    if (mapPickedLocation) {
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [mapPickedLocation]);
+
   const verifyPermissions = async () => {
     if (
       locationPermissionInformation?.status === PermissionStatus.UNDETERMINED
@@ -57,7 +73,7 @@ const LocationPicker = () => {
   };
 
   const pickOnMapHandler = () => {
-    navigation.navigate("Map");
+    navigate("Map");
   };
 
   let locationPreview = <Text>No location picked yet</Text>;
@@ -72,7 +88,6 @@ const LocationPicker = () => {
       />
     );
   }
-  console.log(locationPreview);
 
   return (
     <View>
@@ -95,17 +110,17 @@ const styles = StyleSheet.create({
   mapPreview: {
     width: "100%",
     height: 200,
-    marginVertical: 8,
     justifyContent: "center",
     alignItems: "center",
+    marginVertical: 8,
     backgroundColor: Colors.primary100,
-    borderRadius: 4,
-    overflow: "hidden",
+    borderRadius: 7,
   },
   actions: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    marginBottom: 30,
   },
   mapPreviewImage: {
     width: "100%",

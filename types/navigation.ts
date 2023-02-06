@@ -1,17 +1,18 @@
+import { RouteProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-export type RootStackParamList = {
+export type RootStackParams = {
   AllPlaces: undefined;
-  AddPlace: undefined;
+  AddPlace?: {
+    pickedLat: number;
+    pickedLng: number;
+  };
   Map: undefined;
 };
 
 export type RootStackParamListRoute = NativeStackScreenProps<
-  RootStackParamList,
+  RootStackParams,
   "AllPlaces"
 >;
 
-export type MapStackParamListRoute = NativeStackScreenProps<
-  RootStackParamList,
-  "Map"
->;
+export type RouteProps = RouteProp<RootStackParams, "AddPlace">;
