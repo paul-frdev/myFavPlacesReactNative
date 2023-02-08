@@ -8,7 +8,7 @@ interface PlacesListProps {
   places?: IPlace[];
 }
 const PlacesList = ({ places }: PlacesListProps) => {
-  const handleSelect = () => { };
+  const handleSelect = () => {};
 
   if (!places || places.length <= 0) {
     return (
