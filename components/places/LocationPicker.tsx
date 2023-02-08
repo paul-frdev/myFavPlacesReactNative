@@ -13,9 +13,10 @@ import { RootStackParams, RouteProps } from "types/navigation";
 
 import OutlinedButton from "components/UI/OutlinedButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ILocation } from "types/place";
 
 interface LocationPickerProps {
-  onPickLocation: (data: object) => void;
+  onPickLocation: (data: ILocation) => void;
 }
 const LocationPicker = ({ onPickLocation }: LocationPickerProps) => {
   const [pickedLocation, setPickedLocation] = useState<any>();

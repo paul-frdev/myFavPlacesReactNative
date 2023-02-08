@@ -5,7 +5,7 @@ class Place implements IPlace {
   id: string;
   location: { lat: number; lng: number };
   imageUrl: any;
-  address: string;
+  address?: string;
   constructor({ id, title, imageUrl, location, address }: IPlace) {
     this.title = title;
     this.id = new Date().toString() + Math.random().toString();

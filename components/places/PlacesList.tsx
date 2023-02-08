@@ -8,7 +8,7 @@ interface PlacesListProps {
   places?: IPlace[];
 }
 const PlacesList = ({ places }: PlacesListProps) => {
-  const handleSelect = () => {};
+  const handleSelect = () => { };
 
   if (!places || places.length <= 0) {
     return (
@@ -21,6 +21,7 @@ const PlacesList = ({ places }: PlacesListProps) => {
   }
   return (
     <FlatList
+      style={styles.list}
       data={places}
       keyExtractor={(item: IPlace) => item?.id as string}
       renderItem={({ item }) => (
@@ -33,6 +34,9 @@ const PlacesList = ({ places }: PlacesListProps) => {
 export default PlacesList;
 
 const styles = StyleSheet.create({
+  list: {
+    margin: 24,
+  },
   fallbackContainer: {
     flex: 1,
     justifyContent: "center",
