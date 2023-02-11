@@ -3,18 +3,18 @@ import React from "react";
 import PlaceForm from "components/places/PlaceForm";
 import { IPlace } from "types/place";
 import { useNavigation } from "@react-navigation/native";
-import {
-  RootRouteProps,
-  RootStackParamListRoute,
-  RootStackParams,
-} from "types/navigation";
+import { RootStackParams } from "types/navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { insertPlace } from "utils/database";
 
 const AddPlace = () => {
   const { navigate } =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
-  const createPlaceHandler = (place: IPlace) => {
-    navigate("AllPlaces", { place });
+  const createPlaceHandler = async (place: IPlace) => {
+    console.log(place);
+
+    await insertPlace(place);
+    navigate("AllPlaces");
   };
 
   return <PlaceForm onCreatePlace={createPlaceHandler} />;

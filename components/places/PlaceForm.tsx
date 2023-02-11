@@ -17,6 +17,7 @@ const PlaceForm = ({ onCreatePlace }: PlaceFormProps) => {
     lat: null,
     lng: null,
   });
+  const [pickedAddress, setPickedAddress] = useState("some address");
 
   const changeTitleHandler = (enteredValue: string) => {
     setEnteredTitle(enteredValue);
@@ -31,8 +32,9 @@ const PlaceForm = ({ onCreatePlace }: PlaceFormProps) => {
   const savePlaceHandler = () => {
     const placeItem: IPlace = {
       title: enteredTitle,
-      imageUrl: selectedImage,
+      imageUri: selectedImage,
       location: pickedLocation,
+      address: pickedAddress,
     };
     const placeData = new Place(placeItem);
     onCreatePlace(placeData);

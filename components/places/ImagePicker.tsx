@@ -1,5 +1,5 @@
 import { Alert, Image, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   launchCameraAsync,
   useCameraPermissions,
@@ -7,13 +7,17 @@ import {
 } from "expo-image-picker";
 import { Colors } from "constants/colors";
 import OutlinedButton from "components/UI/OutlinedButton";
+import { ImageSourcePropType } from "react-native";
+
+type Data = {
+  image: ImageSourcePropType;
+};
 
 interface ImagePickerProps {
   onTakeImage: (data: any) => void;
 }
 const ImagePicker = ({ onTakeImage }: ImagePickerProps) => {
-  const [pickedImage, setPickedImage] = useState<any>(null);
-
+  const [pickedImage, setPickedImage] = useState<any>();
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
 
@@ -35,6 +39,7 @@ const ImagePicker = ({ onTakeImage }: ImagePickerProps) => {
 
     return true;
   };
+
   const takeImageHandler = async () => {
     const hasPermission = await verifyPermissions();
 
@@ -49,10 +54,11 @@ const ImagePicker = ({ onTakeImage }: ImagePickerProps) => {
     });
 
     setPickedImage(image);
+
     onTakeImage(image && image.assets?.[0].uri);
   };
 
-  let imagePreview = <Text>No image taken yet!</Text>;
+  let imagePreview = <Text>No taken Image!</Text>;
 
   if (pickedImage) {
     imagePreview = (

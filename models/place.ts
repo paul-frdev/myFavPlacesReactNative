@@ -1,17 +1,17 @@
-import { IPlace } from "../types/place";
+import { IPlace } from "types/place";
 
-class Place implements IPlace {
-  title: string;
+class Place {
   id: string;
-  location: { lat: number; lng: number };
-  imageUrl: any;
+  title: string;
+  imageUri: any;
   address?: string;
-  constructor({ id, title, imageUrl, location, address }: IPlace) {
-    this.title = title;
+  location: { lat: number; lng: number };
+  constructor({ id, title, imageUri, address, location }: IPlace) {
     this.id = new Date().toString() + Math.random().toString();
-    this.location = location;
-    this.imageUrl = imageUrl;
+    this.title = title;
+    this.imageUri = imageUri;
     this.address = address;
+    this.location = location;
   }
 }
 

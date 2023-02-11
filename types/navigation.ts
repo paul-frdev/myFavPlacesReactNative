@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { IPlace } from "./place";
 
 export type RootStackParams = {
-  AllPlaces: { place?: IPlace };
+  AllPlaces: undefined;
   AddPlace?: {
     pickedLat: number;
     pickedLng: number;
