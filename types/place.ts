@@ -1,5 +1,5 @@
 export interface IPlace {
-  id?: string;
+  id?: number;
   title: string;
   imageUri?: any;
   location: { lat: number; lng: number };

@@ -5,13 +5,13 @@ import { Colors } from "constants/colors";
 
 interface PlaceItem {
   place: IPlace;
-  onSelect: () => void;
+  onSelect: (id: number) => void;
 }
 const PlaceItem = ({ place, onSelect }: PlaceItem) => {
   return (
     <Pressable
       style={({ pressed }) => [styles.item, pressed && styles.pressed]}
-      onPress={onSelect}
+      onPress={onSelect.bind(this, place.id!)}
     >
       <Image style={styles.image} source={{ uri: place.imageUri }} />
       <View style={styles.info}>

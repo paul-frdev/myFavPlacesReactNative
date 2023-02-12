@@ -8,7 +8,8 @@ export type RootStackParams = {
     pickedLat: number;
     pickedLng: number;
   };
-  Map: undefined;
+  Map: { initialLat: number; initialLng: number };
+  PlaceDetails?: { placeId: number };
 };
 
 export type RootStackParamListRoute = NativeStackScreenProps<
@@ -18,3 +19,7 @@ export type RootStackParamListRoute = NativeStackScreenProps<
 export type RootRouteProps = RouteProp<RootStackParams, "AllPlaces">;
 
 export type RouteProps = RouteProp<RootStackParams, "AddPlace">;
+
+export type PlaceDetailsRouteProps = RouteProp<RootStackParams, "PlaceDetails">;
+
+export type MapRouteProps = RouteProp<RootStackParams, "Map">;

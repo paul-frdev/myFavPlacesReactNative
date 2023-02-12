@@ -11,8 +11,6 @@ const AddPlace = () => {
   const { navigate } =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
   const createPlaceHandler = async (place: IPlace) => {
-    console.log(place);
-
     await insertPlace(place);
     navigate("AllPlaces");
   };

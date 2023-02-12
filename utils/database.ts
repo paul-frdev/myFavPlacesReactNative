@@ -32,8 +32,6 @@ export const init = () => {
 };
 
 export const insertPlace = (place: IPlace) => {
-  console.log(place);
-
   const promise = new Promise((resolve, reject) => {
     database.transaction((tx) => {
       tx.executeSql(
@@ -46,7 +44,6 @@ export const insertPlace = (place: IPlace) => {
           place.location.lng,
         ],
         (_, result) => {
-          console.log(result);
           resolve(result);
         },
         (_, error: SQLError): boolean | any => {
@@ -85,6 +82,36 @@ export const fetchPlaces = () => {
         },
         (_, error: SQLError): boolean | any => {
           reject(error);
+        }
+      );
+    });
+  });
+
+  return promise;
+};
+
+export const fetchPlaceDetails = (id: number) => {
+  const promise = new Promise((resolve, reject) => {
+    database.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM places WHERE id = ?",
+        [id],
+        (_, result) => {
+          const place = result.rows._array[0];
+          const placeItem: IPlace = {
+            id: place.id,
+            title: place.title,
+            imageUri: place.imageUri,
+            address: place.address,
+            location: {
+              lat: place.lat,
+              lng: place.lng,
+            },
+          };
+          resolve(new Place(placeItem));
+        },
+        (_, error: SQLError): boolean | any => {
+          reject(error.message);
         }
       );
     });
